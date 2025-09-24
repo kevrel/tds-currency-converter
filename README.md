@@ -12,6 +12,8 @@
 
 ## Setup
 ```bash
+git clone https://github.com/kevrel/tds-currency-converter.git
+cd tds-currency-converter
 npm install
 npm start
 ```
