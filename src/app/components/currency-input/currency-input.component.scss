@@ -1,0 +1,28 @@
+:host {
+  display: block;
+  width: 49%;
+  
+  @media (max-width: 600px) {
+    width: 100%;
+  }
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+}
+
+input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  font-size: 16px;
+
+  &[readonly] {
+    background: #f9f9f9;
+  }
+}

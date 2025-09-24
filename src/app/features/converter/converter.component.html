@@ -1,0 +1,70 @@
+<h1 class="title" role="heading" aria-level="1">Currency Converter</h1>
+
+<div class="converter" role="form">
+  <div class="controls" role="group" aria-label="Currency conversion controls">
+    <div class="row" role="group" aria-label="Input amount and source currency">
+      <app-currency-input
+        label="Amount:"
+        type="number"
+        [value]="amount"
+        (valueChange)="onAmountChange($event)"
+        ariaLabel="Amount to convert"
+      />
+
+      <app-currency-select
+        label="From:"
+        [selectedCode]="fromCode"
+        [currencies]="currencies"
+        (selectedCodeChange)="onFromChange($event)"
+        ariaLabel="From currency"
+      />
+
+      @if (baseResult !== null) {
+        <div class="base-rate" role="status" aria-live="polite">
+          1 {{ fromCode }} is {{ baseResult | number:'1.0-2' }} {{ toCode }}
+        </div>
+      }
+
+      @if (baseError) {
+        <p class="error" role="alert">{{ baseError }}</p>
+      }
+    </div>
+
+    <button class="swap" (click)="swap()" aria-label="Swap currencies">⇄</button>
+
+    <div class="row" role="group" aria-label="Converted result and target currency">
+      <app-currency-input
+        label="Result:"
+        type="text"
+        [value]="result"
+        [readonly]="true"
+        ariaLabel="Converted result"
+        [format]="'1.0-2'"
+      />
+
+      <app-currency-select
+        label="To:"
+        [selectedCode]="toCode"
+        [currencies]="currencies"
+        (selectedCodeChange)="onToChange($event)"
+        ariaLabel="To currency"
+      />
+    </div>
+  </div>
+
+  <div class="convert" role="group" aria-label="Conversion action">
+    <button (click)="convert()" aria-label="Convert currency">
+      {{ converting ? 'Converting...' : 'Convert' }}
+    </button>
+
+    @if (loadingCurrencies) {
+      <span role="status" aria-live="polite">
+        Loading currencies...
+      </span>
+    }
+  </div>
+
+  @if (error) {
+    <p class="error" role="alert">{{ error }}</p>
+  }
+</div>

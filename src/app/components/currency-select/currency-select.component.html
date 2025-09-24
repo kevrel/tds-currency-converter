@@ -1,0 +1,13 @@
+<label>
+  {{ label }}
+  <select
+    [ngModel]="selectedCode"
+    (ngModelChange)="onChange($event)"
+  >
+    @for (c of currencies; track c.code) {
+      <option [value]="c.code">
+        {{ c.code }} - {{ c.name }} {{ c.symbol }}
+      </option>
+    }
+  </select>
+</label>

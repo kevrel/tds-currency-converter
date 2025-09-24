@@ -1,0 +1,11 @@
+<label>
+  {{ label }}
+  <input
+    [type]="type"
+    [value]="formattedValue"
+    [readonly]="readonly"
+    [placeholder]="placeholder"
+    (input)="!readonly && onInput($event)"
+    [attr.aria-label]="ariaLabel"
+  />
+</label>
